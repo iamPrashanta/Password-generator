@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-size: 17px;
+            font-family: sans-serif;
+        }
+
+        .length_div,
+        .check_div,
+        .main_div {
+            margin: 20px;
+        }
+
+        .length_div input[type="button"] {
+            border: 0;
+            outline: none;
+            padding: 5px 12px;
+            font-size: 15px;
+        }
+
+        .main_div input[type="text"] {
+            height: 30px;
+            width: 260px;
+            outline: none;
+            border: none;
+            font-size: 18px;
+            border-bottom: 2px solid skyblue;
+            border-radius: 4px;
+        }
+
+        .main_div input[type="button"] {
+            border: 0.1rem solid skyblue;
+            outline: none;
+            border-radius: 6px;
+            background-color: rgba(214, 60, 150, 0.808);
+            padding: 10px;
+            width: auto;
+            font-size: 16px;
+        }
+
+        .main_div input[type="button"]:hover {
+            background-color: rgba(180, 44, 124, 0.808);
+        }
+
+        .main_div input[type="button"]:active {
+            padding: 11px;
+        }
+
+        .active {
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- https://my.norton.com/extspa/passwordmanager?path=pwd-gen
+    https://www.lastpass.com/password-generator -->
+    <div class="length_div">
+        <input type="button" value="8 Character">
+        <input type="button" value="12 Character">
+        <input type="button" value="16 Character" class="active">
+        <input type="button" value="20 Character">
+    </div>
+    <div class="check_div">
+        Include Number<input type="checkbox" checked><br>
+        Include Special Character<input type="checkbox" checked><br>
+
+    </div>
+    <div class="main_div">
+        <input type="text" placeholder="Click to generate..." id="passGen">
+        <input type="button" value="Generate Password" onclick="genPassword()">
+    </div>
+
+
+    <script>
+        function genPassword() {
+            var chars = "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()-_+?<>:{}[]";
+            var lengthOfPass = 16;
+            var password = "";
+
+            for (var i = 0; i < lengthOfPass; i++) {
+                var random_num = (Math.floor(Math.random() * chars.length));//return ramdom number
+                password += chars.substring(random_num, random_num + 1);
+            }
+
+            document.getElementById('passGen').value = password;
+            console.log("Generated Password => " + password);
+        }
+    </script>
+</body>
+
+</html>
